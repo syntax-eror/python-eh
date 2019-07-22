@@ -23,4 +23,5 @@ password = input("Enter email password: ")
 command = "hostname"
 result = subprocess.check_output(command, shell=True)
 send_mail(email, password, result)
+#no hardcoded creds to see here, move along creeps
 #subprocess.Popen(command, shell=True)
