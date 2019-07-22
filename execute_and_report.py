@@ -16,13 +16,11 @@ password = input("Enter email password: ")
 command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
 
 networks = subprocess.check_output(command, shell=True)
-#network_names = re.search("(?:Profile\s*:\s) (.*)", networks)
-# \s regex to search for blank space, * specifies any number of blank spaces
-# ( second group - . -any char, * - any number of ocurrences
-# ?: - non-capturing group
-
-network_names = re.findall("(?:Profile\s*:\s) (.*)", networks)
+network_names_list = re.findall("(?:Profile\s*:\s) (.*)", networks)
 #findall is an RE that will return any instances of the text specified and place in list
+
+for network_name in network_names_list:
+    print(network_name)
 
 print(network_names)
 
