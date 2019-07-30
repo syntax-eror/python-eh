@@ -7,8 +7,13 @@ connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance
 
 ip = input("Enter IP Address: ")
 port = input("Enter port number to use: ")
+buffersize = input("Enter buffer size: ")
 
-connection.send("\nConnection established") #python3 requires bytes-like object to be passed, not string
+connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
+
+received_data = connection.recv(buffersize) #receive, spcify buffer size
+print(received_data)
+
 
 connection.connect((ip, port)) #connect method from connection variable
 connection.close()
