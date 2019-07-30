@@ -8,7 +8,7 @@ connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance
 ip = input("Enter IP Address: ")
 port = input("Enter port number to use: ")
 
-connection.send("Connection established")
+connection.send("\nConnection established") #python3 requires bytes-like object ot be passed, not string
 
 connection.connect((ip, port)) #connect method from connection variable
 connection.close()
