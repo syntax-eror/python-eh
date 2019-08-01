@@ -9,10 +9,15 @@ import socket, subprocess
 def execute_system_command(command):
     return subprocess.check_output(command, shell=True) #system command is a shell not a list so shell needs to be set to true
     #subprocess.check_output returns result, need to either store it as a var or return it
+    
+#python3:
+#ip = input("Enter IP Address: ")
+#port = input("Enter port number to use: ")
+#buffer_size = input("Enter buffer size: ")
 
-ip = input("Enter IP Address: ")
-port = input("Enter port number to use: ")
-buffer_size = input("Enter buffer size: ")
+ip = raw_input("Enter IP Address: ")
+port = raw_input("Enter port number to use: ")
+buffer_size = raw_input("Enter buffer size: ")
 
 connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
 #takes two args - 1 - address family, 2 - socket type
