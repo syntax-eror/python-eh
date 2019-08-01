@@ -16,8 +16,8 @@ def execute_system_command(command):
 #buffer_size = input("Enter buffer size: ")
 
 ip = raw_input("Enter IP Address: ")
-port = raw_input("Enter port number to use: ")
-buffer_size = raw_input("Enter buffer size: ")
+port = int(raw_input("Enter port number to use: "))
+buffer_size = int(raw_input("Enter buffer size: "))
 
 connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
 #takes two args - 1 - address family, 2 - socket type
