@@ -12,4 +12,4 @@ listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 #this allows reuse of sockets, so they will persist through lost connection
 listener.bind((listen_ip, listen_port))
 listener.listen(0) #specify backlog - number of connections that can be queued before it resets
-listener.accept() #specify to listen on that port
+listener.accept() #needed to allow connection on the specified IP and port
