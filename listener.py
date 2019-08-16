@@ -3,7 +3,7 @@
 import socket
 
 listen_ip = input("Enter IP Address to listen on: ")
-listen_port = input("Enter port to listen on: ")
+listen_port = int(input("Enter port to listen on: "))
 
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
