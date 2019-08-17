@@ -19,7 +19,7 @@ listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 listener.bind((listen_ip, listen_port))
 listener.listen(0) #specify backlog - number of connections that can be queued before it resets
-print("[+] Listening for incoming connections on " + listen_ip + "Port:" + listen_port)
+print("[+] Listening for incoming connections on " + listen_ip + "Port:" + str(listen_port))
 #print("[+] Listening for incoming connections on ", listen_ip, "Port:", listen_port) - python3
 #listener.accept() - needed to allow connection on the specified IP and port
 
