@@ -25,6 +25,6 @@ print("[+] Connection established from", str(address))
 
 while True:
     command = input(">> ")
-    connection.send(command)
+    connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
     result = connection.recv(1024) #receive result in 1024 chunks
     print(result)
