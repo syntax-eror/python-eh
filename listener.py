@@ -6,8 +6,10 @@ import socket
 listen_ip = raw_input("Enter IP Address to listen on: ")
 listen_port = int(raw_input("Enter port to listen on: "))
 buffer_size = int(raw_input("Enter buffer size (1024 default: "))
+
 #listen_ip = input("Enter IP Address to listen on: ") - python3
 #listen_port = int(input("Enter port to listen on: ")) - python3
+#buffer_size = int(input("Enter buffer size (1024 default: ")) - python3
 
 listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -17,7 +19,7 @@ listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 listener.bind((listen_ip, listen_port))
 listener.listen(0) #specify backlog - number of connections that can be queued before it resets
-print("[+] Listening for incoming connections on " + listen_ip, "Port:" + listen_port)
+print("[+] Listening for incoming connections on " + listen_ip + "Port:" + listen_port)
 #print("[+] Listening for incoming connections on ", listen_ip, "Port:", listen_port) - python3
 #listener.accept() - needed to allow connection on the specified IP and port
 
