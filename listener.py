@@ -5,7 +5,7 @@ import socket
 
 class Listener:
     def __init__(self, listen_ip, listen_port): #constructor
-        listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #SOCK_STREAM = TCP connection
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         listener.bind((listen_ip, listen_port))
         listener.listen(0) #specify backlog - number of connections that can be queued before it resets
@@ -26,15 +26,15 @@ class Listener:
             
 listen_ip = raw_input("Enter IP Address to listen on: ")
 listen_port = int(raw_input("Enter port to listen on: "))
-buffer_size = int(raw_input("Enter buffer size (1024 default: "))
+buffer_size = int(raw_input("Enter buffer size (1024 default): "))
+#buffer_size - 
 
 my_listener = Listener(listen_ip, listen_port)
 my_listener.run()
 
 
 
-    
-    
+
 #================================
 #!/usr/bin/env python
 #needs debugging to work in python 3 - bytes-like object error issue
@@ -49,7 +49,7 @@ my_listener.run()
 #listen_port = int(input("Enter port to listen on: ")) - python3
 #buffer_size = int(input("Enter buffer size (1024 default: ")) - python3
 
-#listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM) - SOCK_STREAM = TCP connection
 #listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 #setsockopt = method for setting socket options
 #(level, attribute, value)
