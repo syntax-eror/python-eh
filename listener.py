@@ -14,15 +14,21 @@ class Listener:
         print("[+] Connection established from: " + address[0] + ":" + str(listen_port))
         
     def execute_remotely(self, command, buffer_size):
-        self.connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
-        return self.connection.recv(buffer_size) #receive result in specified-byte chunks
+        #self.connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
+        self.reliable_send(command)
+        #return self.connection.recv(buffer_size) #receive result in specified-byte chunks
+        return self.reliable_receive()
+    
+    def reliable_receive(self):
+        json_data = self.connection.recv(1024)
+        return json.loads(json_data)
     
     def reliable_send(self, data):
         #seralise data being sent in order to make sure
         #data arrives intact and pipe doesn't break
         json_data = json.dumps(data) #dumps - method to convert to json object
         self.connection.send(json_data)
-    
+        
     def run(self):
         while True:
             command = raw_input(">> ")
