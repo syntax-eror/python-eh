@@ -39,7 +39,7 @@ class Listener:
             command = raw_input(">> ")
             command = command.split(" ") #command is a string
             #.split converts it into a list with " " space as delimiter
-            #so commands with spaces can be ran
+            #so commands can be split from arguments
             print(command)
             #result = self.execute_remotely(command, buffer_size)
             #print(result)
