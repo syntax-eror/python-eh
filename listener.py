@@ -16,6 +16,11 @@ class Listener:
     def execute_remotely(self, command, buffer_size):
         #self.connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
         self.reliable_send(command)
+        
+        if command[0] == "exit": #if first element of command list contains exit
+            self.connection.close() #close out socket connection
+            exit() #exit python program
+            
         #return self.connection.recv(buffer_size) #receive result in specified-byte chunks
         return self.reliable_receive()
     
