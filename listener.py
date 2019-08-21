@@ -37,8 +37,12 @@ class Listener:
     def run(self):
         while True:
             command = raw_input(">> ")
-            result = self.execute_remotely(command, buffer_size)
-            print(result)
+            command = command.split(" ") #command is a string
+            #.split converts it into a list with " " space as delimiter
+            #so commands with spaces can be ran
+            print(command)
+            #result = self.execute_remotely(command, buffer_size)
+            #print(result)
             
             
 listen_ip = raw_input("Enter IP Address to listen on: ")
