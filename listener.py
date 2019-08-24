@@ -24,6 +24,11 @@ class Listener:
         #return self.connection.recv(buffer_size) #receive result in specified-byte chunks
         return self.reliable_receive()
     
+    def read_file(self, path):
+        with open(path, "rb") as file: #rb - open file for reading as binary
+            return base64.b64encode(file.read()) #use base-64 file encoding
+            #to be able to handle non-text files (images etc)
+    
     def reliable_receive(self):
         json_data = ""
         while True: #loop to execute until entire stream of data is received
