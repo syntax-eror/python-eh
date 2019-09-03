@@ -2,6 +2,8 @@
 
 import os, re, requests, subprocess, tempfile
 #import requests - enable http requests module through python
+#if compiling for Windows - use version 2.5.1 for requests library
+#python.exe -m pip uninstall requests - pip install requests==2.5.1
 #os - library for cross-platform os command calls; otherwise you'd have to use
 #subprocess.call and the specific platform commmand
 #tempfile - module to access temp folder on different oses
