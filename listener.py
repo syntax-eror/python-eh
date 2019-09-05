@@ -79,15 +79,15 @@ class Listener:
         
             
             
-listen_ip = raw_input("Enter IP Address to listen on: ")
-listen_port = int(raw_input("Enter port to listen on: "))
-buffer_size = int(raw_input("Enter buffer size (1024 default): "))
-#buffer_size - 
+#listen_ip = raw_input("Enter IP Address to listen on: ")
+#listen_port = int(raw_input("Enter port to listen on: "))
+#buffer_size = int(raw_input("Enter buffer size (1024 default): "))
+listen_ip = " "
+listen_port = 4444
+buffer_size = 1024
 
 my_listener = Listener(listen_ip, listen_port)
 my_listener.run()
-
-
 
 
 #================================
