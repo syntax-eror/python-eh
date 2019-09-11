@@ -86,7 +86,7 @@ listen_ip = " "
 listen_port = 4444
 buffer_size = 1024
 
-my_listener = Listener(listen_ip, listen_port)
+my_listener = Listener(listen_ip, listen_port, buffer_size)
 my_listener.run()
 
 
