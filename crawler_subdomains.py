@@ -15,10 +15,12 @@ subdomains_list = raw_input("Enter exact path of word list for subdomains: ")
 #location of wordlist file containing subdomains to check
 
 target_url = raw_input("Enter domain: ")
+
 try:
     with open(subdomains_list, "r") as wordlist_file:
         for line in wordlist_file:
             word = line.strip() #strip - built in method to work with strings; removes whitespace
+            #so Line1
             test_url = word + "." + target_url #find subdomain, eg word.google.com
             response = request(test_url)
             if response:
