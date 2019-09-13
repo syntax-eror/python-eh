@@ -10,5 +10,3 @@ try:
 except requests.exceptions.ConnectionError:
     print("Error, check url")
     pass
-
-
