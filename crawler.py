@@ -2,11 +2,11 @@
 
 import requests
 
-url = "google.com"
-
-try:
-    get_response = requests.get("http://" + url)
-    print(get_response)
-except requests.exceptions.ConnectionError:
-    print("Error, check url")
-    pass
+def request(url):
+    try:
+        return requests.get("http://" + url)
+        print(get_response)
+    except requests.exceptions.ConnectionError:
+        #this is the type of error pythong returns if it encounters an issue querying the url
+        print("Error, check url")
+        pass
