@@ -14,7 +14,8 @@ def request(url):
 subdomains_list = raw_input("Enter exact path of word list for subdomains: ")
 #location of wordlist file containing subdomains to check
 
-target_url = "google.com"
+target_url = raw_input("Enter domain: ")
+
 try:
     with open(subdomains_list, "r") as wordlist_file:
         for line in wordlist_file:
