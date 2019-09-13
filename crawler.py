@@ -3,5 +3,12 @@
 import requests
 
 url = "google.com"
-get_response = requests.get("http://" + url)
+
+try:
+    get_response = requests.get("http://" + url)
+    print(get_response)
+except requests.exceptions.ConnectionError:
+    print("Error, check url")
+    pass
+
 
