@@ -16,7 +16,9 @@ try:
 except:
     print("File location not found, check path")
     
+target_url = "google.com"
 with open(subdomains_list, "r") as wordlist_file:
     for line in wordlist_file:
-        print(line)
+        test_url = line + target_url
+        print(test_url)
         
