@@ -11,14 +11,14 @@ def request(url):
         print("Error, check url")
         pass
     
-try:
-    subdomains_list = input("Enter exact path of word list for subdomains: ")
-except:
-    print("File location not found, check path")
-    
+subdomains_list = input("Enter exact path of word list for subdomains: ")
+#location of wordlist file containing subdomains to check
+
 target_url = "google.com"
-with open(subdomains_list, "r") as wordlist_file:
-    for line in wordlist_file:
-        test_url = line + target_url
-        print(test_url)
-        
+try:
+    with open(subdomains_list, "r") as wordlist_file:
+        for line in wordlist_file:
+            test_url = line + target_url
+            print(test_url)
+except:
+    print("File not found, check path and filename")
