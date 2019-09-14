@@ -27,4 +27,4 @@ try:
 except:
     print("Word list file not found, check path and filename")
     
-#to do - add additional for loop to continue to crawl through subdirectories
+#to do - add additional for loop to continue to trawl for sub.sub domains - shop.connect.domain
