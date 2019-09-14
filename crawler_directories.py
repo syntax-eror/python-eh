@@ -25,4 +25,5 @@ try:
             if response:
                 print("[+] Found directory: " + test_url)
 except:
-    print("File not found, check path and filename")
+    print("Word list file not found, check path and filename")
+    
