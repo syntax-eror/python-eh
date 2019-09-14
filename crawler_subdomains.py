@@ -7,8 +7,8 @@ def request(url):
         return requests.get("http://" + url)
         print(get_response)
     except requests.exceptions.ConnectionError:
-        #this is the type of error pythong returns if it encounters an issue querying the url
-        print("Error, check url")
+        #this is the type of error python returns if it encounters an issue querying the url
+        #print("Error, check url")
         pass
     
 subdomains_list = raw_input("Enter exact path of word list for subdomains: ")
