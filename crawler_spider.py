@@ -22,11 +22,10 @@ def crawl(url):
             target_links.append(link)
             print(link)
             crawl(link) #recursive - calls itself
- 
- crawl(target_url)
- 
- 
- 
+
+crawl(target_url)
+
+
 
 
 
