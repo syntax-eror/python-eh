@@ -21,10 +21,9 @@ def crawl(url):
         if target_url in link and link not in target_links: #if not an external link and not already added to list
             target_links.append(link)
             print(link)
-            crawl(link) #recursive - calls itself
+            crawl(link) #recursive function to continue checking each page on site for addiitional links
 
 crawl(target_url)
-
 
 
 
