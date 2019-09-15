@@ -3,6 +3,7 @@
 import re, requests, urlparse
 
 target_url = raw_input("Enter domain: ")
+target_links = [] #initialize empty list
 
 def extract_links(url):
     response = requests.get(url)
@@ -12,8 +13,18 @@ href_links = extract_links(target_url)
 for link in href_links:
     link = urlparse.urljoin(target_url, link) #urlparse is library that will take relative links and convert to full links
     #this converts relative links like /onpage/ to full links https://example.com/onpage
-    print(link)
     
+    if target_url in link and link not in target_links: #if not an external link and not already added to list
+        target_links.append(link)
+        print(link)
+ 
+ 
+ 
+ 
+ 
+
+
+
 #commented code:
 #==================================
 #def request(url):
