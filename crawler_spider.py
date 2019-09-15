@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import re, requests
+import re, requests, urlparse
 
 target_url = raw_input("Enter domain: ")
 
@@ -10,6 +10,8 @@ def extract_links(url):
 
 href_links = extract_links(target_url)
 for link in href_links:
+    link = urlparse.urljoin(target_url, link) #urlparse is library that will take relative links and convert to full links
+    #this converts relative links like /onpage/ to full links https://example.com/onpage
     print(link)
     
 #commented code:
