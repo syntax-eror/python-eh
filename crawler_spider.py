@@ -9,9 +9,9 @@ def extract_links(url):
     return re.findall('(?:href=")(.*?)"', response.content)
 
 href_links = extract_links(target_url)
-print(href_links)
-
-
+for link in href_links:
+    print(link)
+    
 #commented code:
 #==================================
 #def request(url):
