@@ -1,7 +1,19 @@
 #!/usr/bin/env python
 
-import requests
+import re, requests
 
+target_url = raw_input("Enter domain: ")
+
+def extract_links(url):
+    response = requests.get(url)
+    return re.findall('(?:href=")(.*?)"', response.content)
+
+href_links = extract_links(target_url)
+print(href_links)
+
+
+#commented code:
+#==================================
 #def request(url):
     #try:
         #return requests.get("http://" + url)
