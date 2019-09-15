@@ -14,6 +14,9 @@ for link in href_links:
     link = urlparse.urljoin(target_url, link) #urlparse is library that will take relative links and convert to full links
     #this converts relative links like /onpage/ to full links https://example.com/onpage
     
+    if "#" in link: #if relative link that redirects to another part of same page (ex: ex.com/#about)
+        link = link.split("#")[0] #split link into two elements, 0 - first index - everything before #
+    
     if target_url in link and link not in target_links: #if not an external link and not already added to list
         target_links.append(link)
         print(link)
