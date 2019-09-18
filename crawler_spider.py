@@ -3,7 +3,7 @@
 import re, requests, urlparse
 
 target_url = raw_input("Enter domain: ")
-if "http://" and "https://" not in target_url:
+if "http://" not in target_url and "https://" not in target_url: #if user hasn't supplied schema (http or https)
     target_url = "http://" + target_url
     
 target_links = [] #initialize empty list
