@@ -31,6 +31,9 @@ try:
 except KeyboardInterrupt:
     print("[-] Escape key sequence pressed, exiting program")
     exit()
+except requests.exceptions.ConnectionError:
+    print("[-] Error connecting to target; is target https? is it currently online?")
+    exit()
 
 
 #commented code:
