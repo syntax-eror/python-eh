@@ -3,6 +3,10 @@
 import requests
 
 target_url = raw_input("Enter target URL: ")
+
+if "http://" not in target_url and "https://" not in target_url:
+    target_url = "http://" + target_url
+
 data_dict = {"username": "admin", "password": "", "Login": "submit"}
 
 #data_dict stored as key value pairs
