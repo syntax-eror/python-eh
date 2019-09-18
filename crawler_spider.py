@@ -32,7 +32,7 @@ except KeyboardInterrupt:
     print("[-] Escape key sequence pressed, exiting program")
     exit()
 except requests.exceptions.ConnectionError:
-    print("[-] Error connecting to target; is target https? is it currently online?")
+    print("[-] Error connecting to target - if HTTPS provided, is site accepting HTTPS connections? Is site online? Try again.")
     exit()
 
 
