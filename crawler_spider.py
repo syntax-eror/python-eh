@@ -3,6 +3,9 @@
 import re, requests, urlparse
 
 target_url = raw_input("Enter domain: ")
+if "http://" and "https://" not in target_url:
+    target_url = "http://" + target_url
+    
 target_links = [] #initialize empty list
 
 def extract_links(url):
