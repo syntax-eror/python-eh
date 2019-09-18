@@ -15,9 +15,6 @@ subdomains_list = raw_input("Enter exact path of word list for subdomains: ")
 
 target_url = raw_input("Enter domain: ")
 
-if "http://" not in target_url and "https://" not in target_url:
-    target_url = "http://" + target_url
-
 try:
     with open(subdomains_list, "r") as wordlist_file:
         for line in wordlist_file:
