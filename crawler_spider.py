@@ -26,9 +26,11 @@ def crawl(url):
             print(link)
             crawl(link) #recursive function to continue checking each page on site for addiitional links
 
-crawl(target_url)
-
-
+try:
+    crawl(target_url)
+except KeyboardInterrupt:
+    print("[-] Escape key sequence pressed, exiting program")
+    exit()
 
 
 #commented code:
