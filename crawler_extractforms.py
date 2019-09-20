@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup #pip install beautifulsoup4 if needed
 import requests
 
 def request(url):
