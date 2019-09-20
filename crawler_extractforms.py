@@ -13,5 +13,6 @@ def request(url):
 url = raw_input("Enter target URL: ")
 response = request(url)
 
-parsed_html = BeautifulSoup(response.content)
-forms_list = parsed_html.findAll("form") #substitute form with any element you want to locate on page
+parsed_html = BeautifulSoup(response.content, features="lxml")
+forms_list = parsed_html.findAll("form") #substitute form with any element you want to locate on page, ie "blockquote"
+print(forms_list[0])
