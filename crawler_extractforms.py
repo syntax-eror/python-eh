@@ -21,7 +21,7 @@ for form in forms_list:
     action = form.get("action") #"action" is the name of the HTML attribute for specifying what page should do
     #i.e, form id="lookup" action="index.php?page=target-page.php"
     method = form.get("method") #same thing for method tag in code of web page
-    post_url = urlparse.urljoin(target_url, action) #join two urls; 10.0.0.1 + index.php?page=target-page.php
+    post_url = urlparse.urljoin(url, action) #join two urls; 10.0.0.1 + index.php?page=target-page.php
     #10.0.0.1/index.php-etc
     #print(action)
     #print(method)
