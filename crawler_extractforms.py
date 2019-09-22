@@ -36,6 +36,6 @@ for form in forms_list:
         if input_type == "text": #if input is not a button or other object, just text
             input_value = "test"
         post_data[input_name] = input_value
-    request.post(post_url, data=post_data)
+    requests.post(post_url, data=post_data)
 
 #print(forms_list[0])
