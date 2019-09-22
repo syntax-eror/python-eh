@@ -23,12 +23,16 @@ for form in forms_list:
     method = form.get("method") #same thing for method tag in code of web page
     post_url = urlparse.urljoin(target_url, action) #join two urls; 10.0.0.1 + index.php?page=target-page.php
     #10.0.0.1/index.php-etc
-    print(action)
-    print(method)
+    #print(action)
+    #print(method)
     
     input_list = form.findAll("input") #same as forms_list, taking all elements of "input" on page and storing in a list (dict)
     for input in input_list:
         input_name = input.get("name")
-        print(input_name)
-
+        input_type = input.get("type")
+        #print(input_name)
+        input_value = input.get("value")
+        if input_type == "text": #if input is not a button or other object, just text
+            input_value = "test"
+            
 #print(forms_list[0])
