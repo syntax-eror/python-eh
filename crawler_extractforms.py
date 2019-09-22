@@ -27,6 +27,7 @@ for form in forms_list:
     #print(method)
     
     input_list = form.findAll("input") #same as forms_list, taking all elements of "input" on page and storing in a list (dict)
+    post_data = {}
     for input in input_list:
         input_name = input.get("name")
         input_type = input.get("type")
@@ -34,5 +35,7 @@ for form in forms_list:
         input_value = input.get("value")
         if input_type == "text": #if input is not a button or other object, just text
             input_value = "test"
-            
+        post_data[input_name] = input_value
+    request.post(post_url, data=post_data)
+
 #print(forms_list[0])
