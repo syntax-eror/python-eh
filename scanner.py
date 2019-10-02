@@ -12,7 +12,7 @@ class Scanner:
         return re.findall('(?:href=")(.*?)"', response.content)
     
     def crawl(self, url):
-        href_links = self.extract_links(self, url)
+        href_links = self.extract_links(url)
         for link in href_links:
             link = urlparse.urljoin(url, link) #urlparse is library that will take relative links and convert to full links
             #this converts relative links like /onpage/ to full links https://example.com/onpage
