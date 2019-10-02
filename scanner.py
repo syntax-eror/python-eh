@@ -2,7 +2,7 @@
 
 import re, requests, urlparse
 
-class scanner:
+class Scanner:
     def __init__(self, url):
         self.target_url = url
         self.target_links = []
