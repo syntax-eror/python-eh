@@ -4,3 +4,4 @@ import scanner
 
 target_url = "http://10.0.2.4/mutillidae/"
 vuln_scan = scanner.Scanner(target_url)
+vuln_scan.crawl(target_url)
