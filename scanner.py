@@ -11,7 +11,11 @@ class Scanner:
         response = requests.get(url)
         return re.findall('(?:href=")(.*?)"', response.content)
     
-    def crawl(self, url):
+    def crawl(self, url=None): #specify default value for URL;
+        #allows crawl method to be called without passing a url
+        if url = None: #url will equal None if method is called from outside;
+            #function
+            url = self.target_url #if this is the case, set it to target_url
         href_links = self.extract_links(url)
         for link in href_links:
             link = urlparse.urljoin(url, link) #urlparse is library that will take relative links and convert to full links
