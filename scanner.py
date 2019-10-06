@@ -4,11 +4,14 @@ import re, requests, urlparse
 
 class Scanner:
     def __init__(self, url):
+        self.session = requests.Session() #set up session object
+        #this enables established sessions to be used rather than individual requests;
+        #allows use of webpages that require login
         self.target_url = url
         self.target_links = []
         
     def extract_links(self, url):
-        response = requests.get(url)
+        response = self.session.get(url)
         return re.findall('(?:href=")(.*?)"', response.content)
     
     def crawl(self, url=None): #specify default value for URL;
