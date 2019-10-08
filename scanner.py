@@ -16,7 +16,7 @@ class Scanner:
     
     def crawl(self, url=None): #specify default value for URL;
         #allows crawl method to be called without passing a url
-        if url = None: #url will equal None if method is called from outside;
+        if url == None: #url will equal None if method is called from outside;
             #function
             url = self.target_url #if this is the case, set it to target_url
         href_links = self.extract_links(url)
