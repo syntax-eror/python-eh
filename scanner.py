@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import re, requests, urlparse
+from BeautifulSoup import BeautifulSoup
 
 class Scanner:
     def __init__(self, url):
@@ -31,3 +32,8 @@ class Scanner:
                 self.target_links.append(link)
                 print(link)
                 self.crawl(link) #recursive function to continue checking each page on site for addiitional links
+                
+    def extract_forms(self, url):
+        response = self.session.get(url)
+        parsed_html = BeautifulSoup(response.content, features="lxml")
+        return parsed_html.findAll("form") #substitute form with any element you want to locate on page, ie "blockquote"
