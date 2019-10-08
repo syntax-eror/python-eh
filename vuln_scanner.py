@@ -3,7 +3,7 @@
 import requests, scanner
 
 target_url = "http://10.0.2.4/dvwa/"
-data_dict = {"username:" "admin", "password": "password", "Login": "submit"}
+data_dict = {"username": "admin", "password": "password", "Login": "submit"}
 response = requests.post(target_url, data=data_dict)
 
 vuln_scan = scanner.Scanner(target_url)
