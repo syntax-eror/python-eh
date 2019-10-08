@@ -54,7 +54,7 @@ class Scanner:
             #print(input_name)
             input_value = input.get("value")
             if input_type == "text": #if input is not a button or other object, just text
-                input_value = "test"
+                input_value = value
+                
             post_data[input_name] = input_value
-        result = requests.post(post_url, data=post_data)
-        print(result.content)
+        return requests.post(post_url, data=post_data)
