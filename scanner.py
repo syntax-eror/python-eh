@@ -37,3 +37,24 @@ class Scanner:
         response = self.session.get(url)
         parsed_html = BeautifulSoup(response.content, features="lxml")
         return parsed_html.findAll("form") #substitute form with any element you want to locate on page, ie "blockquote"
+    
+    def submit_form(self, form, value, url):
+        action = form.get("action") #"action" is the name of the HTML attribute for specifying what page should do
+        #i.e, form id="lookup" action="index.php?page=target-page.php"
+        method = form.get("method") #same thing for method tag in code of web page
+        post_url = urlparse.urljoin(url, action) #join two urls; 10.0.0.1 + index.php?page=target-page.php
+        #10.0.0.1/index.php-etc
+        #print(action)
+        #print(method)
+        input_list = form.findAll("input") #same as forms_list, taking all elements of "input" on page and storing in a list (dict)
+        post_data = {}
+        for input in input_list:
+            input_name = input.get("name")
+            input_type = input.get("type")
+            #print(input_name)
+            input_value = input.get("value")
+            if input_type == "text": #if input is not a button or other object, just text
+                input_value = "test"
+            post_data[input_name] = input_value
+        result = requests.post(post_url, data=post_data)
+        print(result.content)
