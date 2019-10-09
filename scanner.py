@@ -6,12 +6,14 @@ import re, requests, urlparse
 from BeautifulSoup import BeautifulSoup
 
 class Scanner:
-    def __init__(self, url):
+    def __init__(self, url, links_to_ignore):
         self.session = requests.Session() #set up session object
         #this enables established sessions to be used rather than individual requests;
         #allows use of webpages that require login, eg, dvwa/login.php to allow crawler to login
         self.target_url = url
         self.target_links = []
+        self.links_to_ignore = links_to_ignore #pass in list of links to not scan from vulnscanner.py
+        #these links will then be excluded in the crawler function below
         
     def extract_links(self, url):
         response = self.session.get(url)
@@ -30,7 +32,9 @@ class Scanner:
             if "#" in link: #if relative link that redirects to another part of same page (ex: ex.com/#about)
                 link = link.split("#")[0] #split link into two elements, 0 - first index - everything before #
                 
-            if self.target_url in link and link not in self.target_links: #if not an external link and not already added to list
+            if self.target_url in link and link not in self.target_links and link not in self.links_to_ignore: 
+                #if not an external link and not already added to list and not in list to not crawl;
+                #don't crawl logout pages, etc
                 self.target_links.append(link)
                 print(link)
                 self.crawl(link) #recursive function to continue checking each page on site for addiitional links
