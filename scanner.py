@@ -63,6 +63,7 @@ class Scanner:
                 input_value = value
                 
             post_data[input_name] = input_value
+            
         if method == "post":
             return self.session.post(post_url, data=post_data)
         return self.session.get(post_url, params=post_data)
