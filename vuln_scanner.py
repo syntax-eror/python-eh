@@ -10,7 +10,8 @@ vuln_scan = scanner.Scanner(target_url, links_to_ignore) #establishes session us
 #scanner.py - this allows use on pages with login forms as opposed to sending invidiual;
 #get and post requests
 vuln_scan.session.post("http://10.0.2.4/dvwa/login.php", data=data_dict)
-vuln_scan.extract_forms("http://10.0.2.4/dvwa/vulnerabilities/xss_r/")
+results = vuln_scan.extract_forms("http://10.0.2.4/dvwa/vulnerabilities/xss_r/")
+print(results)
 
 
 #vuln_scan.crawl() #can pass it with no arguments if you use updated scanner.py
