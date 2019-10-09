@@ -11,8 +11,9 @@ vuln_scan = scanner.Scanner(target_url, links_to_ignore) #establishes session us
 #get and post requests
 vuln_scan.session.post("http://10.0.2.4/dvwa/login.php", data=data_dict)
 form = vuln_scan.extract_forms("http://10.0.2.4/dvwa/vulnerabilities/xss_r/")
-print(form)
-response = vuln_scan.submit_form(form[0], "testtest", "http://10.0.2.4/dvwa/vulnerabilities/xss_r/")
+print(forms)
+response = vuln_scan.submit_forms(forms[0], "TESTING", "http://10.0.2.4/dvwa/vulnerabilities/xss_r/")
+#submits "testing" to the first form [0] located at URL specified
 print(response.content)
 
 
