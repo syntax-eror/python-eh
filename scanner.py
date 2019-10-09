@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+#class to be imported and used with vulnerability_scanner.py
+
 import re, requests, urlparse
 from BeautifulSoup import BeautifulSoup
 
@@ -7,7 +9,7 @@ class Scanner:
     def __init__(self, url):
         self.session = requests.Session() #set up session object
         #this enables established sessions to be used rather than individual requests;
-        #allows use of webpages that require login
+        #allows use of webpages that require login, eg, dvwa/login.php to allow crawler to login
         self.target_url = url
         self.target_links = []
         
