@@ -3,7 +3,9 @@
 #class to be imported and used with vulnerability_scanner.py
 
 import re, requests, urlparse
-from BeautifulSoup import BeautifulSoup
+#from BeautifulSoup import BeautifulSoup
+#new version of BeautifulSoup - pip install beautifulsoup4, pip3 install beautifulsoup4
+from bs4 import BeautifulSoup
 
 class Scanner:
     def __init__(self, url, links_to_ignore):
