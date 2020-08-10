@@ -4,7 +4,7 @@ import socket
 
 def scan_port(ip, port):
     s = socket.socket() #create socket object
-    scan_result = s.connect_ex((ip, port)) #returns 1 if successful, otherwise returns errno var
+    scan_result = s.connect_ex((ip, port)) #returns 1 if successful, otherwise returns errno var #
     return scan_result
 
 try:
